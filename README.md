@@ -12,11 +12,11 @@ This script automates the synchronization of iCloud files from macOS to a Linux 
 
 **Key Features:**
  
-    - Automatic Sync**: Continuously watches for changes in your iCloud folder and syncs them to the server.
-    - Customizable Exclusions**: Skips unnecessary files like .DS_Store and temporary system files.
-    - Real-Time Monitoring**: Uses fswatch to monitor the local folder for updates.
-    - SSH Authentication**: Synchronizes files over SSH using a password stored in the script.
-    - Logging Support**: Optionally logs sync operations to a file for easy tracking.
+    - Automatic Sync: Continuously watches for changes in your iCloud folder and syncs them to the server.
+    - Customizable Exclusions: Skips unnecessary files like .DS_Store and temporary system files.
+    - Real-Time Monitoring: Uses fswatch to monitor the local folder for updates.
+    - SSH Authentication: Synchronizes files over SSH using a password stored in the script.
+    - Logging Support: Optionally logs sync operations to a file for easy tracking.
 
   
 **Setup Instructions:**
@@ -63,17 +63,17 @@ Grant execute permissions to the script by running:
 
 Copy the .plist file to the macOS LaunchAgents folder:
 
-    cp com.yourusername.icloudsync.plist ~/Library/LaunchAgents/
+    cp com.yourusername.icloudsync.plist /Library/LaunchDaemons
 
 3. **Activate the Sync**:
 
 Load the plist file with launchctl to start syncing on login:
 
-    sudo launchctl bootstrap system ~/Library/LaunchAgents/com.yourusername.icloudsync.plist
+    sudo launchctl bootstrap system /Library/LaunchDaemons/com.yourusername.icloudsync.plist
 
 To unload the plist file :
 
-    sudo launchctl bootout system ~/Library/LaunchAgents/com.yourusername.icloudsync.plist
+    sudo launchctl bootout system /Library/LaunchDaemons/com.yourusername.icloudsync.plist
 
 
 
