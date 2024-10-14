@@ -126,11 +126,6 @@ These two scripts are essential for automating the synchronization of iCloud fil
 
 
 
-
-
-
-
-
 **Troubleshooting Permissions Issues**
 
 If the script doesn’t work due to permission issues, you can resolve it by allowing access to the required directories:
@@ -144,3 +139,47 @@ If the script doesn’t work due to permission issues, you can resolve it by all
  
 
 This will grant the script permission to access the necessary directories and files on your system.
+
+
+
+## Setting Up Automatic SSH Login from macOS to Linux
+
+To enable passwordless SSH login from macOS to a Linux machine, follow these steps:
+
+1. Generate an SSH key on your macOS machine:
+   ```bash
+   ssh-keygen -t ed25519
+   ```
+
+2. Copy the SSH key to your Linux machine:
+   ```bash
+   ssh-copy-id user@host
+   ```
+
+3. Add the key to the macOS keychain:
+   ```bash
+   ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+   ```
+
+4. Configure SSH to use the keychain automatically. Open the SSH configuration file:
+   ```bash
+   nano ~/.ssh/config
+   ```
+
+   Add the following lines to the file:
+   ```plaintext
+   Host *
+     UseKeychain yes
+     AddKeysToAgent yes
+     IdentityFile ~/.ssh/id_ed25519
+   ```
+
+---
+
+### Install `rsync` on Linux
+
+Make sure `rsync` is installed on the Linux machine, as the script depends on it. You can install it using:
+
+```bash
+sudo nala install rsync (or sudo apt install rsync)
+```
